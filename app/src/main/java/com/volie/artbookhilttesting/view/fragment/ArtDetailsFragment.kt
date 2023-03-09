@@ -7,9 +7,13 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.RequestManager
 import com.volie.artbookhilttesting.databinding.FragmentArtDetailsBinding
+import javax.inject.Inject
 
-class ArtDetailsFragment : Fragment() {
+class ArtDetailsFragment @Inject constructor(
+    val glide: RequestManager
+) : Fragment() {
     private var _mBinding: FragmentArtDetailsBinding? = null
     private val mBinding get() = _mBinding!!
     override fun onCreateView(
