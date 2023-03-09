@@ -21,7 +21,7 @@ class ArtRecyclerAdapter @Inject constructor(
                 txtArtName.text = "Name : ${art.name}"
                 txtArtistName.text = "Artist Name : ${art.artistName}"
                 txtYear.text = "Year : ${art.year}"
-                glide.load(art.imageUrl).into(this.imgArtRow)
+                glide.load(art.imageUrl).into(imgArtRow)
             }
         }
     }

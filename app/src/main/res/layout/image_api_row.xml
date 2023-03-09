@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgSingleArt"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
