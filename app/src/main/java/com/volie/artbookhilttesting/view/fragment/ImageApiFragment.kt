@@ -5,14 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.volie.artbookhilttesting.adapter.ImageRecyclerAdapter
 import com.volie.artbookhilttesting.databinding.FragmentImageApiBinding
 import com.volie.artbookhilttesting.util.Status
 import com.volie.artbookhilttesting.viewmodel.ArtViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ImageApiFragment @Inject constructor(
@@ -35,11 +40,29 @@ class ImageApiFragment @Inject constructor(
         super.onViewCreated(view, savedInstanceState)
         mViewModel = ViewModelProvider(requireActivity())[ArtViewModel::class.java]
         setupAdapter()
+        searchForImage()
         subscribeToObservers()
 
         mAdapter.setOnItemClickListener {
             findNavController().popBackStack() // back to previous fragment
             mViewModel.setSelectedImage(it) // set selected image
+        }
+    }
+
+    private fun searchForImage() {
+        var job: Job? = null // job for delay
+
+        // when text changed
+        mBinding.etSearch.addTextChangedListener {
+            job?.cancel() // cancel previous job
+            job = lifecycleScope.launch {
+                delay(1000L) // wait 1 second
+                it?.let {
+                    if (it.toString().isNotEmpty()) { // if text is not empty
+                        mViewModel.searchForImage(it.toString())
+                    }
+                }
+            }
         }
     }
 
