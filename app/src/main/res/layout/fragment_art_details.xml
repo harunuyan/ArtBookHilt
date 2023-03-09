@@ -17,8 +17,8 @@
     <EditText
         android:id="@+id/et_name"
         android:textStyle="bold"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -30,8 +30,8 @@
     <EditText
         android:id="@+id/et_artist"
         android:layout_width="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Artist"
@@ -42,8 +42,8 @@
     <EditText
         android:id="@+id/et_year"
         android:layout_width="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Year"
