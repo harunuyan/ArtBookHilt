@@ -61,6 +61,7 @@ class ArtDetailsFragment @Inject constructor(
         mViewModel.selectedImage.observe(viewLifecycleOwner) { url ->
             mBinding.let {
                 glide.load(url).into(it.artImg)
+                mBinding.artImg.background = null
             }
         }
         mViewModel.insertArtMessage.observe(viewLifecycleOwner) {

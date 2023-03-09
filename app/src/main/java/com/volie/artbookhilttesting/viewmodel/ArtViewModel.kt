@@ -67,17 +67,16 @@ class ArtViewModel @Inject constructor(
             setSelectedImage("")
             _insertArtMessage.postValue(Resource.success(art))
         }
+    }
 
-
-        fun searchForImage(searchString: String) {
-            if (searchString.isEmpty()) {
-                return
-            } else {
-                _images.value = Resource.loading(null)
-                viewModelScope.launch {
-                    val response = repository.searchImage(searchString)
-                    _images.postValue(response)
-                }
+    fun searchForImage(searchString: String) {
+        if (searchString.isEmpty()) {
+            return
+        } else {
+            _images.value = Resource.loading(null)
+            viewModelScope.launch {
+                val response = repository.searchImage(searchString)
+                _images.postValue(response)
             }
         }
     }

@@ -21,8 +21,7 @@ class ImageRecyclerAdapter @Inject constructor(
             val image = imageList[position]
             binding.apply {
                 glide.load(image).into(imgSingleArt)
-
-                setOnItemClickListener {
+                root.setOnClickListener {
                     onItemClickListener?.let {
                         it(image)
                     }
