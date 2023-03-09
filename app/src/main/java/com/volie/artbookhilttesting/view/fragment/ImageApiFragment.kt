@@ -4,16 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.volie.artbookhilttesting.adapter.ImageRecyclerAdapter
 import com.volie.artbookhilttesting.databinding.FragmentImageApiBinding
+import com.volie.artbookhilttesting.util.Status
+import com.volie.artbookhilttesting.viewmodel.ArtViewModel
 import javax.inject.Inject
 
 class ImageApiFragment @Inject constructor(
-    imageRecyclerAdapter: ImageRecyclerAdapter
+    val mAdapter: ImageRecyclerAdapter
 ) : Fragment() {
     private var _mBinding: FragmentImageApiBinding? = null
     private val mBinding get() = _mBinding!!
+    lateinit var mViewModel: ArtViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +33,48 @@ class ImageApiFragment @Inject constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mViewModel = ViewModelProvider(requireActivity())[ArtViewModel::class.java]
+        setupAdapter()
+        subscribeToObservers()
+
+        mAdapter.setOnItemClickListener {
+            findNavController().popBackStack() // back to previous fragment
+            mViewModel.setSelectedImage(it) // set selected image
+        }
+    }
+
+    private fun setupAdapter() {
+        mBinding.RvImage.adapter = mAdapter
+        mBinding.RvImage.layoutManager = GridLayoutManager(requireContext(), 3)
+    }
+
+    private fun subscribeToObservers() {
+        mViewModel.images.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    val urls = it.data?.hits?.map { imageResult ->
+                        // map to get only image urls
+                        imageResult.previewURL
+                    }
+
+                    mAdapter.imageList = urls ?: listOf() // if urls is null then return empty list
+                    mBinding.progressBar.visibility = View.GONE
+                }
+                Status.ERROR -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "${it.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    mBinding.progressBar.visibility = View.GONE
+                }
+
+
+                Status.LOADING -> {
+                    mBinding.progressBar.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     override fun onDestroy() {
