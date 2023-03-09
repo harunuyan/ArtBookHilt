@@ -1,4 +1,4 @@
-package com.volie.artbookhilttesting.view
+package com.volie.artbookhilttesting.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/artsFragment"
-        android:name="com.volie.artbookhilttesting.view.ArtsFragment"
+        android:name="com.volie.artbookhilttesting.view.fragment.ArtFragment"
         android:label="ArtsFragment" >
         <action
             android:id="@+id/action_artsFragment_to_artDetailsFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/artDetailsFragment"
-        android:name="com.volie.artbookhilttesting.view.ArtDetailsFragment"
+        android:name="com.volie.artbookhilttesting.view.fragment.ArtDetailsFragment"
         android:label="ArtDetailsFragment" >
         <action
             android:id="@+id/action_artDetailsFragment_to_imageApiFragment"
@@ -22,6 +22,6 @@
     </fragment>
     <fragment
         android:id="@+id/imageApiFragment"
-        android:name="com.volie.artbookhilttesting.view.ImageApiFragment"
+        android:name="com.volie.artbookhilttesting.view.fragment.ImageApiFragment"
         android:label="ImageApiFragment" />
 </navigation>

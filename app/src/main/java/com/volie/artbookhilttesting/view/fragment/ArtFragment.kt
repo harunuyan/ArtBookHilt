@@ -1,13 +1,15 @@
-package com.volie.artbookhilttesting.view
+package com.volie.artbookhilttesting.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.volie.artbookhilttesting.databinding.FragmentArtsBinding
+import com.volie.artbookhilttesting.view.ArtFragmentDirections
 
-class ArtsFragment : Fragment() {
+class ArtFragment : Fragment() {
     private var _mBinding: FragmentArtsBinding? = null
     private val mBinding get() = _mBinding!!
 
@@ -22,6 +24,10 @@ class ArtsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mBinding.fab.setOnClickListener {
+            findNavController().navigate(ArtFragmentDirections.actionArtsFragmentToArtDetailsFragment())
+        }
     }
 
     override fun onDestroy() {
