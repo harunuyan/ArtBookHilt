@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.volie.artbookhilttesting.databinding.FragmentArtsBinding
-import com.volie.artbookhilttesting.view.ArtFragmentDirections
 
 class ArtFragment : Fragment() {
     private var _mBinding: FragmentArtsBinding? = null

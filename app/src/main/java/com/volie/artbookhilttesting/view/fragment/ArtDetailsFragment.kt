@@ -8,7 +8,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.volie.artbookhilttesting.databinding.FragmentArtDetailsBinding
-import com.volie.artbookhilttesting.view.ArtDetailsFragmentDirections
 
 class ArtDetailsFragment : Fragment() {
     private var _mBinding: FragmentArtDetailsBinding? = null
