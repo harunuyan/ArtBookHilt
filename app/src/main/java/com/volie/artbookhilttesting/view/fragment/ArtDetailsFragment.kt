@@ -42,6 +42,7 @@ class ArtDetailsFragment @Inject constructor(
         // when back button pressed
         val callBack = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                mViewModel.setSelectedImage("")
                 // to last fragment
                 findNavController().popBackStack()
             }
@@ -68,8 +69,8 @@ class ArtDetailsFragment @Inject constructor(
             when (it.status) {
                 Status.SUCCESS -> {
                     Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
-                    mViewModel.resetInsertArtMesssage() // need to reset it after use it 
+                    mViewModel.resetInsertArtMesssage() // need to reset it after use it
+                    findNavController().navigateUp() // to last fragment
                 }
                 Status.ERROR -> {
                     Toast.makeText(
@@ -78,9 +79,7 @@ class ArtDetailsFragment @Inject constructor(
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-                Status.LOADING -> {
-
-                }
+                Status.LOADING -> {}
             }
         }
     }

@@ -34,7 +34,7 @@ class ArtViewModel @Inject constructor(
 
     // cause we are using livedata we need to reset it after we use it
     fun resetInsertArtMesssage() {
-        _insertArtMessage = MutableLiveData<Resource<Art>>()
+        _insertArtMessage.postValue(Resource.loading(null))
     }
 
     fun setSelectedImage(url: String) {
